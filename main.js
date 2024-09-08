@@ -1,8 +1,7 @@
-const { app, BrowserWindow, Menu } = require('electron');
+const { app, BrowserWindow, Menu, Notification } = require('electron');
 
 // Убираем меню с выбором файла, отмены и прочее 
 Menu.setApplicationMenu(null)
-
 
 function createWindow() {
   const win = new BrowserWindow({
@@ -24,6 +23,13 @@ function createWindow() {
     event.preventDefault();
     win.setTitle('Open Tank');
   });
+
+  // Перехват браузерных уведомлений
+  win.webContents.on('did-receive-notification', (event, notification) => {
+    const { title, body } = notification;
+    new Notification({ title, body }).show();
+  });
+
 }
 
 app.whenReady().then(createWindow);
