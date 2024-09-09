@@ -13,11 +13,5 @@
   "devDependencies": {
     "electron": "^32.0.2",
     "electron-builder": "^25.0.5"
-  },
-  "build": {
-    "icon": "assets/icons/512x512.png",
-    "linux": {
-      "category": "Games"
-    }
   }
 }
