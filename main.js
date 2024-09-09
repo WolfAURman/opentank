@@ -8,11 +8,8 @@ function createWindow() {
     width: 800,
     height: 600,
     webPreferences: {
-      nodeIntegration: true  
-
-    },
-    // Установка иконки приложения
-    icon: 'assets/icons/512x512.png'
+      nodeIntegration: true
+    }
   });
 
   // Ссылка на веб сайт с которого берутся ресурсы
