@@ -102,7 +102,7 @@ You might still be able to extract the contents of this AppImage
 if you run it with the --appimage-extract option
 ```
 
-* Install fuse. pacman -S fuse. Manjaro/ArchLinux:
+* Install fuse. Manjaro/ArchLinux:
 ```
 sudo pacman -S fuse
 ```
