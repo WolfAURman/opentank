@@ -66,6 +66,33 @@ For AMD graphics cards using the OpenSource driver, game runs perfectly and has 
 ## Data storage:
 Almost all AppImage applications save data & config in your home folder. OpenTank is no exception. You can find the application data in ```~/.config/opentank/```
 
+## Creating shortcut
+
+Create folder. After creation folder, place opentank-*.AppImage and the assets folder with the icon pack there ```~/.opentank```
+```
+mkdir -p ~/.opentank
+```
+
+Create file .desktop:
+```
+cat << EOF > ~/.local/share/applications/opentank.desktop
+[Desktop Entry]
+Type=Application
+Exec=/home/$USER/.opentank/opentank-*.AppImage --enable-features=VaapiVideoDecoder,VaapiIgnoreDriverChecks,Vulkan,DefaultANGLEVulkan,VulkanFromANGLE
+Icon=/home/$USER/.opentank/assets/icons/512x512.png
+Terminal=false
+Categories=Games;Game;
+Keywords=tanki;opentank;OT;
+Name=OpenTank
+GenericName=OpenTank
+EOF
+```
+
+Update shortcut database:
+```
+update-desktop-database ~/.local/share/applications
+```
+
 ## Fix errors:
 
 ### Error:
