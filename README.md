@@ -78,7 +78,7 @@ Create file .desktop:
 cat << EOF > ~/.local/share/applications/opentank.desktop
 [Desktop Entry]
 Type=Application
-Exec=/home/$USER/.opentank/opentank-*.AppImage --enable-features=VaapiVideoDecoder,VaapiIgnoreDriverChecks,Vulkan,DefaultANGLEVulkan,VulkanFromANGLE
+Exec=/home/$USER/.opentank/opentank-*.AppImage --ozone-platform-hint=auto --enable-features=VaapiVideoDecoder,VaapiIgnoreDriverChecks,Vulkan,DefaultANGLEVulkan,VulkanFromANGLE
 Icon=/home/$USER/.opentank/assets/icons/512x512.png
 Terminal=false
 Categories=Games;Game;
