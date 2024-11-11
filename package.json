@@ -1,6 +1,6 @@
 {
   "name": "opentank",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
@@ -11,7 +11,7 @@
   "license": "ISC",
   "description": "Open Source client implementation for TankiOnline on NodeJS",
   "devDependencies": {
-    "electron": "^32.0.2",
-    "electron-builder": "^25.0.5"
+    "electron": "^33.2.0",
+    "electron-builder": "^25.1.8"
   }
 }
