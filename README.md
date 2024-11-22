@@ -55,12 +55,6 @@ To launch the project, download from the [releases](https://github.com/WolfAURma
 ./opentank-1.0.0.AppImage
 ```
 
-
-### If you want to run with hardware virtualization, use this command:
-```
-./dist/opentank-1.0.0.AppImage --enable-features=VaapiVideoDecoder,VaapiIgnoreDriverChecks,Vulkan,DefaultANGLEVulkan,VulkanFromANGLE
-```
-
 For AMD graphics cards using the OpenSource driver, game runs perfectly and has a high FPS. For more information, visit wikipedia: [Arch Linux Wiki - Chromium](https://wiki.archlinux.org/title/Chromium)
 
 ## Data storage:
@@ -78,7 +72,7 @@ Create file .desktop:
 cat << EOF > ~/.local/share/applications/opentank.desktop
 [Desktop Entry]
 Type=Application
-Exec=/home/$USER/.opentank/opentank-*.AppImage --ozone-platform-hint=auto --enable-features=VaapiVideoDecoder,VaapiIgnoreDriverChecks,Vulkan,DefaultANGLEVulkan,VulkanFromANGLE
+Exec=/home/$USER/.opentank/opentank-*.AppImage --ozone-platform-hint=auto
 Icon=/home/$USER/.opentank/assets/icons/512x512.png
 Terminal=false
 Categories=Games;Game;
