@@ -47,17 +47,16 @@ npm start
 
 ## How to use
 
-> [!IMPORTANT]
-> By default, this client runs without hardware virtualization, which can cause you to get performance problems!
-
 To launch the project, download from the [releases](https://github.com/WolfAURman/opentank/releases) ```section opentank-1.0.0.AppImage``` package (or if you used manual build, you will receive a ready-made package from ``dist/opentank-1.0.0.AppImage``) and run it from the terminal:
 ```
 ./opentank-1.0.0.AppImage
 ```
 
-For AMD graphics cards using the OpenSource driver, game runs perfectly and has a high FPS. For more information, visit wikipedia: [Arch Linux Wiki - Chromium](https://wiki.archlinux.org/title/Chromium)
+For AMD graphics cards using the OpenSource driver, game runs perfectly and has a high FPS.
+For more information, visit wikipedia: [Arch Linux Wiki - Chromium](https://wiki.archlinux.org/title/Chromium)
 
 ## Data storage
+
 Almost all AppImage applications save data & config in your home folder. OpenTank is no exception. You can find the application data in ```~/.config/opentank/```
 
 ## Creating shortcut
