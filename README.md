@@ -10,7 +10,8 @@ The Windows client is created in a similar way, just a Chromium engine and an el
 
 ## How to build
 
-* Install npm & nodejs. Manjaro/ArchLinux:
+**Install npm & nodeJS**
+* Manjaro/ArchLinux:
 ```
 sudo pacman -S nodejs npm
 ```
@@ -20,27 +21,31 @@ sudo pacman -S nodejs npm
 sudo apt install nodejs npm
 ```
 
-* Clone git repository and navigate to the project folder:
+**Clone git repository and navigate to the project folder:**
 ```
 git clone https://github.com/WolfAURman/opentank && cd opentank
 ```
 
-* Run the dependency installation:
+**Run the dependency installation:**
 ```
 npm install
 ```
 
-* Run build:
+**Run build:**
 ```
 npm run build
 ```
 
-* Get the finished project in the directory:
+**Get the finished project in the directory:**
 ```
 dist/opentank-1.0.0.AppImage
 ```
 
-* For a test run during development:
+## Development
+* Make changes to the source code.
+* Run during development without compilation.
+
+**Example:** 
 ```
 npm start
 ```
