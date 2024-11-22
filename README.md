@@ -93,16 +93,24 @@ Update shortcut database:
 update-desktop-database ~/.local/share/applications
 ```
 
-## Fix errors:
+## Troubleshooting
 
-### Error:
+Below are solutions to common issues that may arise when working with this project.
+
+### Error: Fuse package is not installed
+
+**Description:**
 ```
 AppImages require FUSE to run. 
 You might still be able to extract the contents of this AppImage 
 if you run it with the --appimage-extract option
 ```
 
-* Install fuse. Manjaro/ArchLinux:
+**Solution:**
+- Install the fuse package.
+
+**Example:**
+* Manjaro/ArchLinux:
 ```
 sudo pacman -S fuse
 ```
