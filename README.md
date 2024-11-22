@@ -57,7 +57,7 @@ To launch the project, download from the [releases](https://github.com/WolfAURma
 
 For AMD graphics cards using the OpenSource driver, game runs perfectly and has a high FPS. For more information, visit wikipedia: [Arch Linux Wiki - Chromium](https://wiki.archlinux.org/title/Chromium)
 
-## Data storage:
+## Data storage
 Almost all AppImage applications save data & config in your home folder. OpenTank is no exception. You can find the application data in ```~/.config/opentank/```
 
 ## Creating shortcut
@@ -112,4 +112,29 @@ sudo pacman -S fuse
 * Debian/Ubuntu/Linux Mint:
 ```
 sudo apt install fuse
+```
+
+### Error: The cursor goes beyond the edges of the window
+
+**Description:**
+```
+When using mouse control in the game, the cursor goes beyond the edges of the window, leaving the application
+```
+
+**Solution:**
+- Do not use this flag: `--ozone-platform-hint=auto`
+
+**Example:**
+```
+cat << EOF > ~/.local/share/applications/opentank.desktop
+[Desktop Entry]
+Type=Application
+Exec=/home/$USER/.opentank/opentank-*.AppImage
+Icon=/home/$USER/.opentank/assets/icons/512x512.png
+Terminal=false
+Categories=Games;Game;
+Keywords=tanki;opentank;OT;
+Name=OpenTank
+GenericName=OpenTank
+EOF
 ```
