@@ -1,7 +1,18 @@
 const { app, BrowserWindow, Menu, Notification } = require('electron');
 
-// Убираем меню с выбором файла, отмены и прочее 
-Menu.setApplicationMenu(null)
+// Принудительное использование GPU, игнорируя блеклист
+const gpuSettings = [
+  ['ignore-gpu-blacklist', 'force_high_performance_gpu']
+];
+gpuSettings.forEach(setting => app.commandLine.appendSwitch(...setting));
+
+// Для 32-битных систем увеличиваем максимальный размер кучи JavaScript
+if (process.arch === 'ia32') {
+  app.commandLine.appendSwitch('js-flags', '--max-old-space-size=3072');
+}
+
+// Убираем меню с выбором файла, отмены и прочее
+Menu.setApplicationMenu(null);
 
 function createWindow() {
   const win = new BrowserWindow({
@@ -26,7 +37,6 @@ function createWindow() {
     const { title, body } = notification;
     new Notification({ title, body }).show();
   });
-
 }
 
 app.whenReady().then(createWindow);
@@ -39,7 +49,6 @@ app.on('window-all-closed', () => {
 
 app.on('activate', () => {
   if (BrowserWindow.getAllWindows().length === 0) {
-    createWindow();  
-
+    createWindow();
   }
 });
