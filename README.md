@@ -133,7 +133,7 @@ When using mouse control in the game, the cursor goes beyond the edges of the wi
 cat << EOF > ~/.local/share/applications/opentank.desktop
 [Desktop Entry]
 Type=Application
-Exec=/home/$USER/.opentank/opentank-*.AppImage
+Exec=/home/$USER/.opentank/opentank-*.AppImage --enable-features=Vulkan
 Icon=/home/$USER/.opentank/assets/icons/512x512.png
 Terminal=false
 Categories=Games;Game;
