@@ -1,40 +1,67 @@
 const { app, BrowserWindow, Menu, Notification } = require('electron');
 
-// Принудительное использование GPU, игнорируя блеклист
-const gpuSettings = [
-  ['ignore-gpu-blacklist', 'force_high_performance_gpu']
-];
-gpuSettings.forEach(setting => app.commandLine.appendSwitch(...setting));
+const chromiumFlags = [
+  // --- Графика и производительность ---
+  ['ignore-gpu-blocklist'],                          // Разрешает аппаратное ускорение на старых драйверах
+  ['force_high_performance_gpu'],                    // Принудительно использует дискретную видеокарту
+  ['enable-gpu-rasterization'],                      // Переносит растеризацию на GPU
+  ['enable-zero-copy'],                              // Прямой доступ к памяти (без копирования)
+  ['enable-hardware-overlays', 'single-fullscreen'], // Оптимизация полноэкранного режима
+  ['disable-gpu-vsync'],                             // (Выключено) Отключает вертикальную синхронизацию
+  // ['disable-frame-rate-limit'],                   // (Выключено) Снимает лок FPS
 
-// Для 32-битных систем увеличиваем максимальный размер кучи JavaScript
+  // --- Сеть и пинг ---
+  ['no-proxy-server'],                               // Отключает поиск прокси (убирает микрофризы сети)
+  ['enable-quic'],                                   // Включает быстрый протокол передачи (HTTP/3)
+  ['enable-async-dns'],                              // Асинхронный поиск IP-адресов
+  ['disable-background-networking'],                 // Отключает фоновую сетевую активность Chromium
+  ['disable-client-side-phishing-detection']         // Отключает проверку безопасности сайтов в фоне
+];
+
+chromiumFlags.forEach(flag => app.commandLine.appendSwitch(...flag));
+
+// Принудительный выбор дискретной видеокарты (если их две)
+app.commandLine.appendSwitch('force_high_performance_gpu');
+
+// Оптимизация памяти для 32-битных систем
 if (process.arch === 'ia32') {
   app.commandLine.appendSwitch('js-flags', '--max-old-space-size=3072');
 }
 
-// Убираем меню с выбором файла, отмены и прочее
 Menu.setApplicationMenu(null);
 
 function createWindow() {
   const win = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1024,
+    height: 768,
     webPreferences: {
-      nodeIntegration: true
+      // nodeIntegration
+      // Игре он не нужен, но его включение создает огромную дыру в безопасности
+      // и заставляет движок тратить ресурсы на проброс Node.js API в окно браузера
+      nodeIntegration: false,
+      contextIsolation: true,
+
+      // backgroundThrottling. Игра не будет резать FPS,
+      // При клике на второй монитор или при свёрнутом окне
+      backgroundThrottling: false,
+
+      // Отключение проверки орфографии (экономит немного RAM)
+      spellcheck: false,
+
+      // Разрешаем автоплей (иногда браузер блокирует звуки до первого клика)
+      autoplayPolicy: 'no-user-gesture-required'
     }
   });
 
-  // Ссылка на веб сайт с которого берутся ресурсы
   win.loadURL('https://tankionline.com/play');
 
-  // Принудительная установка названия окна
-  win.on('page-title-updated', (event, title) => {
+  win.on('page-title-updated', (event) => {
     event.preventDefault();
     win.setTitle('Open Tank');
   });
 
-  // Перехват браузерных уведомлений
-  win.webContents.on('did-receive-notification', (event, notification) => {
-    const { title, body } = notification;
+  // Перехват уведомлений
+  win.webContents.on('did-receive-notification', (event, title, body) => {
     new Notification({ title, body }).show();
   });
 }
